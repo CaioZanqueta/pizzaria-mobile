@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 function AuthRoutes() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="SignIn" component={SingIn} />
+      <Stack.Screen name="SignIn" component={SingIn} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
