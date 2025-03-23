@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Dashboard from "../pages/Dashboard";
 import Order from "../pages/Order";
 import FinishOrder from "../pages/FinishOrder";
+import OrdersList from "../pages/OrdersList";
 
 export type StackParamsList = {
   Dashboard: undefined;
@@ -15,6 +16,7 @@ export type StackParamsList = {
     number: number | string;
     order_id: string
   };
+  OrdersList: undefined;
 }
 
 const Stack = createNativeStackNavigator<StackParamsList>();
@@ -37,6 +39,17 @@ function AppRoutes() {
         component={FinishOrder}
         options={{
           title: "Finalizando",
+          headerStyle: {
+            backgroundColor: '#1d1d2e'
+          },
+          headerTintColor: '#FFF'
+        }}
+      />
+      <Stack.Screen
+        name="OrdersList"
+        component={OrdersList}
+        options={{
+          title: 'Pedidos Ativos',
           headerStyle: {
             backgroundColor: '#1d1d2e'
           },

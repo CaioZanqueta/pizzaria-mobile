@@ -27,6 +27,22 @@ export default function Dashboard() {
     setNumber('')
   }
 
+  function handleInputChange(value: string) {
+    // Remove caracteres não numéricos
+    const sanitizedValue = value.replace(/[^0-9]/g, '')
+  
+    // Limita o valor entre 1 e 99
+    if (sanitizedValue === '') {
+      setNumber('')
+    } else if (Number(sanitizedValue) >= 1 && Number(sanitizedValue) <= 99) {
+      setNumber(sanitizedValue)
+    }
+  }
+
+  function handleOpenOrdersList() {
+    navigation.navigate('OrdersList')
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Novo Pedido</Text>
@@ -37,11 +53,18 @@ export default function Dashboard() {
         style={styles.input}
         keyboardType="numeric"
         value={number}
-        onChangeText={setNumber}
+        onChangeText={(value) => handleInputChange(value)}
       />
 
       <TouchableOpacity style={styles.button} onPress={openOrder}>
         <Text style={styles.buttonText}>Abrir mesa</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={[styles.button, { backgroundColor: '#FF3F4B' }]} 
+        onPress={handleOpenOrdersList}
+      >
+        <Text style={styles.buttonText}>Ver Pedidos Ativos</Text>
       </TouchableOpacity>
     </SafeAreaView>
   )
