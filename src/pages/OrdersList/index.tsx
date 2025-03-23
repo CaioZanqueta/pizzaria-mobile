@@ -33,16 +33,11 @@ export default function OrdersList(){
     setOrders(response.data);
   }
 
-  async function handleFinishOrder(id: string){
-    try {
-      await api.put('/order/finish', {
-        order_id: id,
-      });
-
-      loadOrders();
-    } catch (err) {
-      console.log('Erro ao finalizar:', err);
-    }
+  async function handleOpenOrder(id: string, table: string | number){
+    navigation.navigate('Order', {
+      number: table,
+      order_id: id
+    });
   }
 
   return(
@@ -55,7 +50,7 @@ export default function OrdersList(){
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.orderItem}
-            onPress={() => handleFinishOrder(item.id)}
+            onPress={() => handleOpenOrder(item.id, item.table)}
           >
             <Text style={styles.orderText}>Mesa {item.table}</Text>
           </TouchableOpacity>
