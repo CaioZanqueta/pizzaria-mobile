@@ -34,7 +34,7 @@ export default function OrdersList(){
   }
 
   async function handleOpenOrder(id: string, table: string | number){
-    navigation.navigate('Order', {
+    navigation.navigate('OrderUpdate', {
       number: table,
       order_id: id
     });
